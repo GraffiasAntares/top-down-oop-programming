@@ -111,19 +111,94 @@ def van_info(van):
 
 
 def train_search(trains_list, train_name):
-    pass
+    for train in trains_list:
+        if train.train_number == train_name:
+            return train
+    return object
 
 
 def van_search(trains_list, van_name):
-    pass
+    for train in trains_list:
+        for van in train.vans:
+            if van.van_number == van_name:
+                return van
+    return object
 
 
 def seat_search(trains_list, seat_num):
-    pass
+    for train in trains_list:
+        for van in train.vans:
+            for seat in van.seats:
+                if seat.seat_number == seat_num:
+                    return seat
+    return object
+
+
+def int_input(inpt):
+    if inpt.replace(" ", "").isdigit():
+        return int(inpt)
+    return 0
 
 
 def main():
     trains_list = []
+    while True:
+        print("\n"
+              "[1] Создать объект\n"
+              "[2] Вывод содержимого объектов\n"
+              "[3] Вывод конкретного объекта\n"
+              "[4] Завершение программы\n")
+        user_input = int_input(input("..."))
+
+        match user_input:
+            case 1:
+                print("\n"
+                      "Выберите объект\n"
+                      "[1] Поезд\n"
+                      "[2] Вагон\n"
+                      "[3] Место\n")
+                user_input = int_input(input("..."))
+
+                if user_input == 1:
+                    create_train(trains_list)
+
+                elif user_input == 2:
+                    create_van(trains_list)
+
+                elif user_input == 3:
+                    create_seat(trains_list)
+
+                else:
+                    print("\nОшибка ввода\n")
+            case 2:
+                show_objects(trains_list)
+                input("Нажмите Enter, чтобы продолжить...")
+            case 3:
+                print("\n"
+                      "[1] Вывести инфрмацию о поезде\n"
+                      "[2] Вывести информацию о вагоне\n")
+                user_input = int_input(input("..."))
+
+                if user_input == 1:
+                    print("\nВведите название поезда\n")
+                    train_name = input("...").replace(" ","")
+                    train = train_search(trains_list, train_name)
+                    train_info(train)
+                    input("Нажмите Enter, чтобы продолжить...")
+
+                elif user_input == 2:
+                    print("\nВведите номер вагона\n")
+                    van_name = input().replace(" ","")
+                    van = van_search(trains_list, van_name)
+                    van_info(van)
+                    input("Нажмите Enter, чтобы продолжить...")
+
+                else:
+                    print("\nОшибка ввода\n")
+            case 4:
+                exit()
+            case _:
+                print("\nОшибка ввода\n")
 
 
 if __name__ == "__main__":
