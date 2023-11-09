@@ -2,9 +2,11 @@
 Top-down oop programming example
 
 NAME
+
     main
 
 CLASSES
+
     builtins.object
         BaseObject
             Exam
@@ -210,6 +212,7 @@ CLASSES
      |      list of weak references to the object (if defined)
 
 FUNCTIONS
+
     create_exam(registry)
     
     create_graduation_exam(registry)
